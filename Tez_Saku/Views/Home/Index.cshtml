@@ -1,0 +1,479 @@
+﻿@using EntityLayer.Concrete
+@model List<HomePage>
+@{
+	ViewData["Title"] = "Home Page";
+	Layout = "MainLayout";
+}
+
+ 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CrypWiki - Ana Sayfa</title>
+	<link href="~/css/home.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<div id="main">
+		<div id="welcome">
+			<h2>Homomorfik Şifreleme Nedir?</h2>
+			<img src="/images/img03.png" alt="Şifreleme" width="180" height="140" style="position: relative; float: left; margin-right: 1em;" />
+			
+				<strong>Homomorfik Şifreleme Türleri:</strong>
+				<br />
+				<br />
+				<strong>Temelde üç tür homomorfik şifreleme vardır: </strong>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 100)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+				
+				<br />
+				<br />
+				<strong>1.Tam-Homomorfik Şifreleme (Fully Homomorphic Encryption - FHE):</strong>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 101)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+				<br />
+				<br />
+				<strong>2.Kısmi-Homomorfik Şifreleme (Partially Homomorphic Encryption - PHE):</strong>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 102)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+
+				<br />
+				<br />
+				<strong>3.Biraz Homomorfik Şifreleme (Somewhat Homomorphic Encryption - SHE):</strong>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 103)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+
+				<br />
+				<br />
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 104)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			
+		</div>
+
+
+		<div class="containerhr">
+			<img src="/images/img04.png" alt="Ayraç">
+		</div>
+		
+
+
+		<div id="example">
+			<h2>Açıklama</h2>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 105)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 135)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 106)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 107)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+				<br />
+				<br />
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 108)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 109)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 110)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<br />
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 111)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			<br />
+
+			<blockquote>
+				<p>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 112)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</p>
+			</blockquote>
+
+			<div style="text-align: center;">
+				<!-- Resmi ortalamak için -->
+				<img src="/images/fullhomomorfik.png" alt="Tam Homomorfik Şifreleme" width="750" height="425">
+			</div>
+
+
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+
+			<h2>Tarihçe</h2>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 113)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			<img src="/images/dataprivacy.png" alt="Data Privacy" width="240" height="160" style="position: relative; float: left; margin-right: 1em;" />
+			<br />
+			<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 114)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+
+
+			</p>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<h3>
+
+				FHE, Tam Homomorfik Şifreleme (Fully Homomorphic Encryption)
+			</h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 115)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			<ul>
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 116)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 117)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 118)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				<li>
+						@foreach (var item in Model)
+						{
+							if (@item.ParagraphID == 119)
+							{
+								@item.ParagraphContent
+							}
+
+						}
+				</li>
+				<li>
+						@foreach (var item in Model)
+						{
+							if (@item.ParagraphID == 120)
+							{
+								@item.ParagraphContent
+							}
+
+						}
+				</li>
+				<li>
+						@foreach (var item in Model)
+						{
+							if (@item.ParagraphID == 121)
+							{
+								@item.ParagraphContent
+							}
+
+						}
+				</li>
+				<li>
+						@foreach (var item in Model)
+						{
+							if (@item.ParagraphID == 122)
+							{
+								@item.ParagraphContent
+							}
+
+						}
+				</li>
+				<li>
+						@foreach (var item in Model)
+						{
+							if (@item.ParagraphID == 123)
+							{
+								@item.ParagraphContent
+							}
+
+						}
+				</li>
+			</ul>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 124)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+
+			<blockquote>
+				<p>
+					@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 125)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</p>
+			</blockquote>
+			<br />
+			<br />
+			<h2>Homomorfik şifreleme ile neler yapılabilir?</h2>
+			<p>
+
+				@foreach (var item in Model)
+				{
+					if (@item.ParagraphID == 126)
+					{
+						@item.ParagraphContent
+					}
+
+				}
+			</p>
+			<ol>
+				<li>
+					<strong>Koruma: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 127)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Gizlilik Korunarak Hesaplama Yapma: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 128)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Sağlık Sektörü: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 129)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Veri Analitiği ve Veri Madenciliği: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 130)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Outsourcing ve Veri Depolama: </strong>@foreach (var item in Model)
+						{
+							if (@item.ParagraphID == 131)
+							{
+								@item.ParagraphContent
+							}
+
+						}
+				</li>
+				<br />
+				<li>
+					<strong>Güvenli Veri Paylaşımı: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 132)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Veri Analizine Katılımı Teşvik Etmek: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 133)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Finansal Hizmetler: </strong>@foreach (var item in Model)
+					{
+						if (@item.ParagraphID == 134)
+						{
+							@item.ParagraphContent
+						}
+
+					}
+				</li>
+			</ol>
+		</div>
+	</div>
+	<div id="extra"></div>
+
+</body>
+</html>

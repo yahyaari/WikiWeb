@@ -1,0 +1,41 @@
+﻿.highlight {
+    background-color: yellow;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+    .input-container input[type="text"],
+    .input-container input[type="password"] {
+        padding-right: 30px; /* Icon genişliği + padding */
+        margin-right: 10px; /* Boşluk */
+    }
+
+.icon-container {
+    display: inline-block; /* İkon ile metnin yatayda hizalanması */
+}
+
+    .icon-container img {
+        width: 20px; /* İkon genişliği */
+        height: auto; /* İkon yüksekliği otomatik */
+    }
+
+#goToTopButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 999;
+}
+

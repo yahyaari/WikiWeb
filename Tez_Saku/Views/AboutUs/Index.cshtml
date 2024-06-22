@@ -1,0 +1,192 @@
+﻿@using EntityLayer.Concrete
+@model List<AboutUs>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CrypWiki - Hakkımızda</title>
+	<link href="~/css/aboutUs.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+	<link href="~/css/tezpagepdf.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<div id="main">
+		<div style="text-align: center;">
+			<h2>Bitirme Tezi Konusu</h2>
+			<br />
+			<h3>
+				@foreach (var item in Model)
+				{
+					if (@item.AboutUsId == 1)
+					{
+						@item.AboutUsContent
+					}
+
+				}
+			</h3>
+			<h3>
+				Danışman: 
+				@foreach (var item in Model)
+				{
+					if (@item.AboutUsId == 1)
+					{
+						@item.AboutUsDanısman
+					}
+
+				}
+			</h3>
+			<br />
+		</div>
+		<div id="welcome">
+			<div class="container">
+				<div class="circle-img">
+					<img src="~/images/alibresim.png" alt="Ali Berdan Karasoy">
+				</div>
+				<div class="text">
+					<br />
+					<h3>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 1)
+							{
+								@item.AboutUsUniversite
+							}
+
+						}
+					</h3>
+					<h3>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 1)
+							{
+								@item.AboutUsFakulteBolum
+							}
+
+						}
+					</h3>
+					<p>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 1)
+							{
+								@item.AboutUsIsım
+							}
+
+						}
+					</p>
+					<p>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 1)
+							{
+								@item.AboutUsNumara
+							}
+
+						}
+					</p>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="circle-img">
+					<img src="~/images/yahyaresim.png" alt="Yahya Arı">
+				</div>
+				<div class="text">
+					<br />
+					<h3>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 2)
+							{
+								@item.AboutUsUniversite
+							}
+
+						}
+					</h3>
+					<h3>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 2)
+							{
+								@item.AboutUsFakulteBolum
+							}
+
+						}
+					</h3>
+					<p>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 2)
+							{
+								@item.AboutUsIsım
+							}
+
+						}
+					</p>
+					<p>
+						@foreach (var item in Model)
+						{
+							if (@item.AboutUsId == 2)
+							{
+								@item.AboutUsNumara
+							}
+
+						}
+					</p>
+				</div>
+			</div>
+
+		</div>
+
+		<br />
+		<div class="containerhr">
+			<img src="/images/img04.png" alt="Ayraç">
+		</div>
+		<br />
+
+		<div id="pdfContainer">
+			<div id="pdfViewer"></div>
+		</div>
+
+	</div>
+
+	<!--PDF GÖRÜNTÜLEMEK İÇİN JS KODLARI-->
+	<script>
+		// PDF.js ile PDF dosyasını yükleme
+		var url = '/pdf/Bitirme Tezi Rapor.pdf'; // PDF dosyasının konumu wwwroot klasöründen başlayacak şekilde belirtildi.
+		var pdfjsLib = window['pdfjs-dist/build/pdf'];
+		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+
+		// PDF dosyasını yükleme ve sayfaları görüntüleme
+		pdfjsLib.getDocument(url).promise.then(function (pdf) {
+			// Tüm sayfaları görüntülemek için döngü
+			for (var pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+				pdf.getPage(pageNum).then(function (page) {
+					// PDF'i görüntülemek için canvas elementi oluştur
+					var scale = 1.5;
+					var viewport = page.getViewport({ scale: scale });
+					var canvas = document.createElement('canvas');
+					var context = canvas.getContext('2d');
+					canvas.height = viewport.height;
+					canvas.width = viewport.width;
+					document.getElementById('pdfViewer').appendChild(canvas);
+					// PDF içeriğini çiz
+					var renderContext = {
+						canvasContext: context,
+						viewport: viewport
+					};
+					page.render(renderContext);
+				});
+			}
+		});
+	</script>
+
+
+</body>
+</html>
+

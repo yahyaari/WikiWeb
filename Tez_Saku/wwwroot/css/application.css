@@ -1,0 +1,187 @@
+﻿#myFormContainer {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    border: 1px solid #87C4FF; /* Kırmızı border, kalınlık 3px */
+}
+
+    #myFormContainer label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    #myFormContainer input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #myFormContainer button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        margin: 5px auto;
+    }
+
+        #myFormContainer button:hover {
+            background-color: #45a049;
+        }
+
+.uploadbody {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.uploadh2 {
+    text-align: center;
+    color: #333;
+}
+
+.uploadform {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    border: 1px solid #87C4FF;
+    border-radius: 15px;
+}
+
+.uploadlabel {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+
+#myFormContainer2 {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    border: 1px solid #87C4FF; /* Kırmızı border, kalınlık 3px */
+}
+
+    #myFormContainer2 label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    #myFormContainer2 input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #myFormContainer2 button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        margin: 5px auto;
+    }
+
+        #myFormContainer2 button:hover {
+            background-color: #45a049;
+        }
+
+
+
+
+
+
+
+
+
+
+
+.modalContainer {
+    display: none; /* Başlangıçta gizli yap */
+    position: fixed; /* Diğer içeriğin üzerinde duracak */
+    z-index: 1; /* Diğer içeriğin üstünde olacak */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ekranın tamamını kaplayacak */
+    height: 100%;
+    overflow: auto; /* Pencere içeriği taşarsa kaydırma çubuğu ekle */
+    background-color: rgba(0,0,0,0.4); /* Siyah opak bir arka plan */
+    padding-top: 60px; /* Başlığın üst kısmından başlayacak */
+}
+
+.modalContent {
+    background-color: #fefefe; /* Beyaz arka plan */
+    margin: 5% auto; /* Dikey hizalama */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Pencerenin genişliği */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }

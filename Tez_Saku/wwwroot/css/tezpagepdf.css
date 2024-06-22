@@ -1,0 +1,21 @@
+﻿#pdfContainer {
+    overflow-y: auto; /* Dikey kaydırma çubuğunu görüntüler */
+    max-height: 1150px; /* Maksimum yükseklik ayarı */
+}
+
+#pdfViewer {
+    text-align: center; /* İçeriği ortala */
+    margin: auto; /* İçeriği yatayda ve dikeyde ortala */
+}
+
+.containerhr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px; /* Yükseklik 70px */
+}
+
+    .containerhr img {
+        max-width: 100%; /* Resmin genişliği kadar */
+        height: auto; /* Otomatik yükseklik */
+    }

@@ -1,0 +1,882 @@
+﻿@using EntityLayer.Concrete
+@model List<Example>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CrypWiki - Örnekler</title>
+    <link rel="stylesheet" href="/css/codemirror.css">
+    <link href="~/css/example.css" rel="stylesheet" type="text/css" />
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.addEventListener('click', function (event) {
+            // Tıklanan elemanın modalContainer olup olmadığını kontrol edin
+            if (event.target.classList.contains('modalContainer')) {
+                // Tıklanan modalContainer'ı kapatın
+                closeModal(event.target.id);
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div id="main">
+        <div id="welcome">
+            <h2 id="Programlama_dillerindeki_uygulamalar">Örnekler Sayfası</h2>
+            <br />
+        </div>
+        <h2>Örnek 1.1 C# kullanarak basit bir homomorfik şifreleme örneği.</h2>
+        <div id="ornek1"></div>
+        <!---->
+        <button onclick="openModal('modalContainer1')" style="background-color: #4CAF50; /* Yeşil */
+  border: none;
+  color: white;
+  padding: 10px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;">
+            Örnek 1.1 açıklaması için tıklayın.
+        </button>
+
+        <div id="modalContainer1" class="modalContainer">
+            <div class="modalContent">
+                <span class="close" onclick="closeModal('modalContainer1')">&times;</span>
+                <h1>Örnek 1.1 C# kullanarak basit bir homomorfik şifreleme örneği.</h1>
+                <br />
+                <p>Bu kod parçası, C# dilinde Microsoft'un SEAL (Simple Encrypted Arithmetic Library) kütüphanesini kullanarak homomorfik şifreleme örneğini gerçekleştiriyor.</p>
+                <br />
+                <h2>Kod Açıklaması</h2>
+                <ol>
+                    <li>
+                        <p><code>using System;</code></p>
+                        <p>Bu satır, System adlı isim alanını kullanacağımızı belirtir. Bu isim alanı, konsol uygulamaları gibi temel .NET türlerine ve işlevlerine erişim sağlar.</p>
+                    </li>
+
+                    <li>
+                        <p><code>using Microsoft.Research.SEAL;</code></p>
+                        <p>Bu satır, Microsoft SEAL kütüphanesinden gerekli sınıfları kullanacağımızı belirtir. SEAL (Simple Encrypted Arithmetic Library), homomorfik şifreleme işlemlerini gerçekleştirmek için kullanılan bir kütüphanedir.</p>
+                    </li>
+
+                    <li>
+                        <p><code>namespace HomomorphicEncryptionExample {</code></p>
+                        <p>Bu satır, HomomorphicEncryptionExample adında bir ad alanı (namespace) oluşturur. Kodumuz bu ad alanı altında bulunacak.</p>
+                    </li>
+
+                    <li>
+                        <p><code>class Program {</code></p>
+                        <p>Bu satır, Program adında bir sınıf tanımlar. Ana uygulama sınıfımız bu sınıf içinde bulunacak.</p>
+                    </li>
+
+                    <li>
+                        <p><code>static void Main(string[] args) {</code></p>
+                        <p>Bu satır, programın giriş noktasını belirtir. Main fonksiyonu, programın başlangıç noktasıdır ve buradan çalıştırılır.</p>
+                    </li>
+
+                    <li>
+                        <p><code>EncryptionParameters parms = new EncryptionParameters(SchemeType.BFV);</code></p>
+                        <p>Bu satır, şifreleme parametrelerini oluşturur. BFV şemasını kullanarak bir şifreleme parametresi nesnesi oluşturulur.</p>
+                    </li>
+
+                    <li>
+                        <p><code>parms.PolyModulusDegree = 4096;</code></p>
+                        <p>Bu satır, polinom modulus derecesini ayarlar. Homomorfik şifreleme işlemlerinde kullanılan polinomun derecesini belirler.</p>
+                    </li>
+
+                    <li>
+                        <p><code>parms.CoeffModulus = CoeffModulus.BFVDefault(polyModulusDegree: 4096);</code></p>
+                        <p>Bu satır, katsayı modulusunu ayarlar. BFVDefault fonksiyonu, belirli bir polinom derecesi için uygun bir katsayı modulusunu döndürür.</p>
+                    </li>
+
+                    <li>
+                        <p><code>parms.PlainModulus = new Modulus(40961);</code></p>
+                        <p>Bu satır, düz metin modulusunu ayarlar. Bu, şifreli verinin nasıl modüle edileceğini belirler.</p>
+                    </li>
+
+                    <li>
+                        <p><code>using(SEALContext context = new SEALContext(parms)) {</code></p>
+                        <p>Bu satır, şifreleme bağlamını (context) başlatır. Şifreleme ve çözme işlemleri bu bağlam içinde gerçekleşir.</p>
+                    </li>
+
+                    <li>
+                        <p><code>KeyGenerator keygen = new KeyGenerator(context);</code></p>
+                        <p>Bu satır, anahtar çiftlerini oluşturmak için bir anahtar üreteci nesnesi oluşturur.</p>
+                    </li>
+
+                    <li>
+                        <p><code>PublicKey publicKey = keygen.PublicKey;</code></p>
+                        <p><code>SecretKey secretKey = keygen.SecretKey;</code></p>
+                        <p>Bu satırlar, genel ve gizli anahtarları alır.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Encryptor encryptor = new Encryptor(context, publicKey);</code></p>
+                        <p><code>Decryptor decryptor = new Decryptor(context, secretKey);</code></p>
+                        <p>Bu satırlar, şifreleme ve çözme işlemleri için şifreleme ve çözme nesneleri oluşturur.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Plaintext plainText = new Plaintext("42");</code></p>
+                        <p>Bu satır, şifrelenecek olan metni içeren bir düz metin (plaintext) nesnesi oluşturur.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Console.WriteLine("Original: " + plainText.ToString());</code></p>
+                        <p>Bu satır, orijinal metni konsola yazdırır.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Ciphertext encryptedData = new Ciphertext();</code></p>
+                        <p><code>encryptor.Encrypt(plainText, encryptedData);</code></p>
+                        <p>Bu satırlar, veriyi şifreler.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Console.WriteLine("Encrypted: " + encryptedData.ToString());</code></p>
+                        <p>Bu satır, şifrelenmiş veriyi konsola yazdırır.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Plaintext decryptedData = new Plaintext();</code></p>
+                        <p><code>decryptor.Decrypt(encryptedData, decryptedData);</code></p>
+                        <p>Bu satırlar, şifreli veriyi çözer.</p>
+                    </li>
+
+                    <li>
+                        <p><code>Console.WriteLine("Decrypted: " + decryptedData.ToString());</code></p>
+                        <p>Bu satır, çözülmüş veriyi konsola yazdırır.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!---->
+        <div class="hr"><hr /></div>
+
+        <h2>Örnek 1.2 Python kullanarak ElGamal ile şifreleme örneği.</h2>
+        <div id="ornek2"></div>
+        <!---->
+        <button onclick="openModal('modalContainer2')" style="background-color: #4CAF50; /* Yeşil */
+  border: none;
+  color: white;
+  padding: 10px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;">
+            Örnek 1.2 açıklaması için tıklayın.
+        </button>
+
+        <div id="modalContainer2" class="modalContainer">
+            <div class="modalContent">
+                <span class="close" onclick="closeModal('modalContainer2')">&times;</span>
+                <h1>Örnek 1.2 Python kullanarak ElGamal ile şifreleme örneği.</h1>
+                <br />
+                <p>Bu örnek, ElGamal şifreleme algoritmasını kullanarak veriyi şifreleyen ve daha sonra şifrelenmiş veriyi deşifre eden bir Python kodunu gösterir.</p>
+                <br />
+                <h2>Kod Açıklaması</h2>
+                <h3>Kütüphane İçe Aktarma</h3>
+                <p>
+                    Python'un Crypto kütüphanesinden number modülünü içe aktarır.
+                </p>
+                <pre><code>
+        from Crypto.Util import number
+    </code></pre>
+
+                <h3>Veri Seti Oluşturma</h3>
+                <p>
+                    Örnek bir veri seti oluşturmak için 1 ile 1000 arasında rastgele sayılar içeren bir dizi oluşturur.
+                </p>
+                <pre><code>
+        data_set = [number.getRandomRange(1, 1000) for _ in range(42)]
+    </code></pre>
+
+                <h3>ElGamal Şifreleme İşlemi</h3>
+                <p>
+                    ElGamal şifreleme işlemini gerçekleştiren bir fonksiyon. Veriyi şifreler ve şifrelenmiş veriyi döndürür.
+                </p>
+                <pre><code>
+        def encrypt(data, p, g, public_key):
+            encrypted_data = []
+            for d in data:
+                k = number.getRandomRange(1, p - 2)  # Rastgele bir k değeri seç
+                c1 = pow(g, k, p)
+                c2 = (d * pow(public_key, k, p)) % p
+                encrypted_data.append((c1, c2))
+            return encrypted_data
+    </code></pre>
+
+                <h3>ElGamal Deşifreleme İşlemi</h3>
+                <p>
+                    ElGamal şifrelemesiyle şifrelenmiş veriyi deşifre eden bir fonksiyon.
+                </p>
+                <pre><code>
+        def decrypt(encrypted_data, private_key, p):
+            decrypted_data = []
+            for c1, c2 in encrypted_data:
+                s = pow(c1, private_key, p)
+                decrypted = (c2 * pow(s, -1, p)) % p
+                decrypted_data.append(decrypted)
+            return decrypted_data
+    </code></pre>
+
+                <h3>Anahtar Oluşturma</h3>
+                <p>
+                    ElGamal şifreleme için gerekli anahtarları oluşturan bir fonksiyon.
+                </p>
+                <pre><code>
+        def generate_keys():
+            p = number.getPrime(128)  # Rastgele bir asal sayı seç
+            g = number.getRandomRange(2, p - 1)  # Rastgele bir g değeri seç
+            private_key = number.getRandomRange(2, p - 1)  # Rastgele bir özel anahtar seç
+            public_key = pow(g, private_key, p)  # Açık anahtar hesapla
+            return p, g, public_key, private_key
+    </code></pre>
+
+                <h3>Anahtarları Oluştur</h3>
+                <p>
+                    Anahtarları oluşturmak için önce <code>generate_keys()</code> fonksiyonunu çağırır ve dönen değerleri alır.
+                </p>
+                <pre><code>
+        p, g, public_key, private_key = generate_keys()
+    </code></pre>
+
+                <h3>Veriyi Şifrele</h3>
+                <p>
+                    Oluşturulan anahtarlarla veriyi şifreler.
+                </p>
+                <pre><code>
+        encrypted = encrypt(data_set, p, g, public_key)
+        print("Şifrelenmiş Veri:")
+        print(encrypted)
+    </code></pre>
+
+                <h3>Veriyi Deşifre Et</h3>
+                <p>
+                    Şifrelenmiş veriyi özel anahtar kullanarak deşifre eder.
+                </p>
+                <pre><code>
+        decrypted = decrypt(encrypted, private_key, p)
+        print("Deşifre Edilmiş Veri:")
+        print(decrypted)
+    </code></pre>
+            </div>
+        </div>
+        <!---->
+        <div class="hr"><hr /></div>
+
+        <h2>Örnek 1.3 Java kullanarak basit bir homomorfik şifreleme örneği.</h2>
+        <div id="ornek3"></div>
+        <!---->
+        <button onclick="openModal('modalContainer3')" style="background-color: #4CAF50; /* Yeşil */
+  border: none;
+  color: white;
+  padding: 10px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;">
+            Örnek 1.3 açıklaması için tıklayın.
+        </button>
+
+        <div id="modalContainer3" class="modalContainer">
+            <div class="modalContent">
+                <span class="close" onclick="closeModal('modalContainer3')">&times;</span>
+                <h1>Örnek 1.3 Java kullanarak basit bir homomorfik şifreleme örneği.</h1>
+                <br />
+                <p>Bu örnek, Paillier homomorfik şifreleme algoritmasını kullanarak iki sayıyı şifreleyen, şifreli sayıları toplayan ve sonucu çözen bir Java kodunu gösterir.</p>
+                <br />
+                <h2>Kod Açıklaması</h2>
+                <ul>
+                    <li><h3>Paillier kütüphanesini içe aktar.</h3></li>
+                    <pre><code>
+            import com.n1analytics.paillier.*;
+        </code></pre>
+
+                    <li><h3>HomomorphicEncryptionExample sınıfını tanımla ve main fonksiyonunu başlat.</h3></li>
+                    <pre><code>
+            public class HomomorphicEncryptionExample {
+                public static void main(String[] args) {
+                    try {
+        </code></pre>
+
+                    <li><h3>Paillier anahtar çiftlerini oluştur.</h3></li>
+                    <pre><code>
+                        // Paillier anahtar çiftlerini oluştur
+                        PaillierPrivateKey privateKey = PaillierPrivateKey.create(2048);
+                        PaillierPublicKey publicKey = privateKey.getPublicKey();
+        </code></pre>
+
+                    <li><h3>Şifrelenecek sayıları oluştur.</h3></li>
+                    <pre><code>
+                        // Şifrelenecek sayıları oluştur
+                        long plaintext1 = 42;
+                        long plaintext2 = 15;
+        </code></pre>
+
+                    <li><h3>Sayıları şifrele.</h3></li>
+                    <pre><code>
+                        // Sayıları şifrele
+                        Ciphertext ciphertext1 = publicKey.encrypt(plaintext1);
+                        Ciphertext ciphertext2 = publicKey.encrypt(plaintext2);
+        </code></pre>
+
+                    <li><h3>Şifreli sayıları topla.</h3></li>
+                    <pre><code>
+                        // Şifreli sayıları topla
+                        Ciphertext sumCiphertext = ciphertext1.add(ciphertext2);
+        </code></pre>
+
+                    <li><h3>Toplamı çöz.</h3></li>
+                    <pre><code>
+                        // Toplamı çöz
+                        long decryptedSum = privateKey.decrypt(sumCiphertext).longValue();
+        </code></pre>
+
+                    <li><h3>Sonuçları ekrana yazdır.</h3></li>
+                    <pre><code>
+                        // Sonuçları ekrana yazdır
+                        System.out.println("Plaintext 1: " + plaintext1);
+                        System.out.println("Plaintext 2: " + plaintext2);
+                        System.out.println("Encrypted 1: " + ciphertext1.toString());
+                        System.out.println("Encrypted 2: " + ciphertext2.toString());
+                        System.out.println("Sum (Encrypted): " + sumCiphertext.toString());
+                        System.out.println("Decrypted Sum: " + decryptedSum);
+        </code></pre>
+
+                    <li><h3>İstisnai durumu ele al.</h3></li>
+                    <pre><code>
+                    } catch (PaillierException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        </code></pre>
+                </ul>
+            </div>
+        </div>
+        <!---->
+        <div class="hr"><hr /></div>
+
+        <h2>Örnek 1.4 Python ile yazılmış basit bir homomorfik şifreleme örneği.</h2>
+        <div id="ornek4"></div>
+        <!---->
+        <button onclick="openModal('modalContainer4')" style="background-color: #4CAF50; /* Yeşil */
+  border: none;
+  color: white;
+  padding: 10px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;">
+            Örnek 1.4 açıklaması için tıklayın.
+        </button>
+
+        <div id="modalContainer4" class="modalContainer">
+            <div class="modalContent">
+                <span class="close" onclick="closeModal('modalContainer4')">&times;</span>
+                <h1>Örnek 1.4 Python ile yazılmış basit bir homomorfik şifreleme örneği.</h1>
+                <br />
+                <p>Bu örnek, Microsoft SEAL kütüphanesini kullanarak iki sayıyı şifreleyen, şifreli sayıları toplayan ve sonucu çözen bir Python kodunu gösterir.</p>
+                <br />
+                <h2>Kod Açıklaması</h2>
+                <ul>
+                    <li><h3>SEAL kütüphanesinden gerekli modülleri içe aktar.</h3></li>
+                    <pre><code>
+            from seal import *
+        </code></pre>
+
+                    <li><h3>main() fonksiyonunu tanımla ve başlat.</h3></li>
+                    <pre><code>
+            def main():
+        </code></pre>
+
+                    <li><h3>SEALContext ve Encoder'ın oluşturulması.</h3></li>
+                    <pre><code>
+                            # SEALContext ve Encoder'ın oluşturulması
+                            parms = EncryptionParameters(scheme_type.BFV)
+                            parms.set_poly_modulus_degree(4096)
+                            parms.set_coeff_modulus(CoeffModulus.BFVDefault(4096))
+                            parms.set_plain_modulus(PlainModulus(40961))
+
+                            context = SEALContext(parms)
+                            encoder = IntegerEncoder(context)
+        </code></pre>
+
+                    <li><h3>Anahtar çiftlerinin oluşturulması.</h3></li>
+                    <pre><code>
+                            # Anahtar çiftlerinin oluşturulması
+                            keygen = KeyGenerator(context)
+                            public_key = keygen.public_key()
+                            secret_key = keygen.secret_key()
+        </code></pre>
+
+                    <li><h3>Encryptor ve Decryptor'ların oluşturulması.</h3></li>
+                    <pre><code>
+                            # Encryptor ve Decryptor'ların oluşturulması
+                            encryptor = Encryptor(context, public_key)
+                            decryptor = Decryptor(context, secret_key)
+        </code></pre>
+
+                    <li><h3>Verinin şifrelenmesi.</h3></li>
+                    <pre><code>
+                            # Verinin şifrelenmesi
+                            plain_text_1 = 42
+                            plain_text_2 = 15
+
+                            encrypted_data_1 = Ciphertext()
+                            encrypted_data_2 = Ciphertext()
+
+                            encryptor.encrypt(encoder.encode(plain_text_1), encrypted_data_1)
+                            encryptor.encrypt(encoder.encode(plain_text_2), encrypted_data_2)
+        </code></pre>
+
+                    <li><h3>Şifreli sayıların toplanması.</h3></li>
+                    <pre><code>
+                            # Şifreli sayıların toplanması
+                            encrypted_sum = Ciphertext()
+                            evaluator = Evaluator(context)
+                            evaluator.add(encrypted_data_1, encrypted_data_2, encrypted_sum)
+        </code></pre>
+
+                    <li><h3>Şifreli toplamın çözülmesi.</h3></li>
+                    <pre><code>
+                            # Şifreli toplamın çözülmesi
+                            decrypted_sum = Plaintext()
+                            decryptor.decrypt(encrypted_sum, decrypted_sum)
+        </code></pre>
+
+                    <li><h3>Sonuçların ekrana yazdırılması.</h3></li>
+                    <pre><code>
+                            # Sonuçların ekrana yazdırılması
+                            print("Plaintext 1:", plain_text_1)
+                            print("Plaintext 2:", plain_text_2)
+                            print("Encrypted 1:", encrypted_data_1.to_string())
+                            print("Encrypted 2:", encrypted_data_2.to_string())
+                            print("Encrypted Sum:", encrypted_sum.to_string())
+                            print("Decrypted Sum:", encoder.decode_int64(decrypted_sum))
+        </code></pre>
+
+                    <li><h3>main() fonksiyonunu başlat.</h3></li>
+                    <pre><code>
+                        if __name__ == '__main__':
+                            main()
+        </code></pre>
+                </ul>
+            </div>
+        </div>
+        <!---->
+        <div class="hr"><hr /></div>
+
+        <h2>Örnek 1.5 Python ile yazılmış çarpma homomorfizmi (Somewhat Homomorphic Encryption) örneği.</h2>
+        <div id="ornek5"></div>
+        <!---->
+        <button onclick="openModal('modalContainer5')" style="background-color: #4CAF50; /* Yeşil */
+  border: none;
+  color: white;
+  padding: 10px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;">
+            Örnek 1.5 açıklaması için tıklayın.
+        </button>
+
+        <div id="modalContainer5" class="modalContainer">
+            <div class="modalContent">
+                <span class="close" onclick="closeModal('modalContainer5')">&times;</span>
+                <h1>Örnek 1.5 Python ile yazılmış çarpma homomorfizmi (Somewhat Homomorphic Encryption) örneği.</h1>
+                <br />
+                <p>Bu örnek, Microsoft SEAL kütüphanesini kullanarak çarpma homomorfizmi (Somewhat Homomorphic Encryption) ile şifreleme örneği gerçekleştirir.</p>
+                <br />
+                <h2>Kod Açıklaması</h2>
+                <ul>
+                    <li>
+                        <p>
+                            <h3>System ve Microsoft.Research.SEAL kütüphanelerini içe aktar.</h3>
+                        </p>
+                        <pre><code>
+                using System;
+                using Microsoft.Research.SEAL;
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>HomomorphicEncryptionExample adında bir namespace oluştur.</h3>
+                        </p>
+                        <pre><code>
+                namespace HomomorphicEncryptionExample {
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>Main fonksiyonunu tanımla ve başlat.</h3>
+                        </p>
+                        <pre><code>
+                    class Program {
+                        static void Main(string[] args) {
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>Parametrelerin oluşturulması.</h3>
+                        </p>
+                        <pre><code>
+                            // Parametrelerin oluşturulması
+                            EncryptionParameters parms = new EncryptionParameters(SchemeType.BFV);
+                            parms.PolyModulusDegree = 4096;
+                            parms.CoeffModulus = CoeffModulus.BFVDefault(polyModulusDegree: 4096);
+                            parms.PlainModulus = new Modulus(40961);
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>SEALContext içinde anahtar çiftlerinin oluşturulması.</h3>
+                        </p>
+                        <pre><code>
+                            using(SEALContext context = new SEALContext(parms))
+                            {
+                                // Anahtar çiftlerinin oluşturulması
+                                KeyGenerator keygen = new KeyGenerator(context);
+                                PublicKey publicKey = keygen.PublicKey;
+                                SecretKey secretKey = keygen.SecretKey;
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>Encryptor ve Decryptor'ların oluşturulması.</h3>
+                        </p>
+                        <pre><code>
+                                // Encryptor ve Decryptor'ların oluşturulması
+                                Encryptor encryptor = new Encryptor(context, publicKey);
+                                Decryptor decryptor = new Decryptor(context, secretKey);
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>Verinin şifrelenmesi.</h3>
+                        </p>
+                        <pre><code>
+                                // Verinin şifrelenmesi
+                                Plaintext plainText = new Plaintext("42");
+                                Console.WriteLine("Original: " + plainText.ToString());
+
+                                Ciphertext encryptedData = new Ciphertext();
+                                encryptor.Encrypt(plainText, encryptedData);
+                                Console.WriteLine("Encrypted: " + encryptedData.ToString());
+            </code></pre>
+                    </li>
+
+                    <li>
+                        <p>
+                            <h3>Şifresinin çözülmesi.</h3>
+                        </p>
+                        <pre><code>
+                                // Şifresinin çözülmesi
+                                Plaintext decryptedData = new Plaintext();
+                                decryptor.Decrypt(encryptedData, decryptedData);
+                                Console.WriteLine("Decrypted: " + decryptedData.ToString());
+                            }
+            </code></pre>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+
+        <script src="/js/codemirror.js"></script>
+        <script src="/js/clike.js"></script>
+        <script>
+            var csharpCode1 = `
+                        using System;
+                        using Microsoft.Research.SEAL;
+
+                        namespace HomomorphicEncryptionExample {
+                            class Program {
+                                static void Main(string[] args) {
+                                    // SEAL kütüphanesini kullanarak homomorfik şifreleme örneği
+
+                                    // Parametrelerin oluşturulması
+                                    EncryptionParameters parms = new EncryptionParameters(SchemeType.BFV);
+                                    parms.PolyModulusDegree = 4096;
+                                    parms.CoeffModulus = CoeffModulus.BFVDefault(polyModulusDegree: 4096);
+                                    parms.PlainModulus = new Modulus(40961);
+
+                                    using(SEALContext context = new SEALContext(parms))
+                                    {
+                                        // Anahtar çiftlerinin oluşturulması
+                                        KeyGenerator keygen = new KeyGenerator(context);
+                                        PublicKey publicKey = keygen.PublicKey;
+                                        SecretKey secretKey = keygen.SecretKey;
+
+                                        // Encryptor ve Decryptor'ların oluşturulması
+                                        Encryptor encryptor = new Encryptor(context, publicKey);
+                                        Decryptor decryptor = new Decryptor(context, secretKey);
+
+                                        // Verinin şifrelenmesi
+                                        Plaintext plainText = new Plaintext("42");
+                                        Console.WriteLine("Original: " + plainText.ToString());
+
+                                        Ciphertext encryptedData = new Ciphertext();
+                                        encryptor.Encrypt(plainText, encryptedData);
+                                        Console.WriteLine("Encrypted: " + encryptedData.ToString());
+
+                                        // Verinin şifresinin çözülmesi
+                                        Plaintext decryptedData = new Plaintext();
+                                        decryptor.Decrypt(encryptedData, decryptedData);
+                                        Console.WriteLine("Decrypted: " + decryptedData.ToString());
+                                    }
+                                }
+                            }
+                        }`;
+
+
+            var csharpCode2 = `
+                                                from Crypto.Util import number
+
+                                        # Veri seti oluşturma (örneğin 42 elemanlı rastgele bir dizi)
+                                        data_set = [number.getRandomRange(1, 1000) for _ in range(42)]
+
+                                        # ElGamal şifreleme işlemi
+                                        def encrypt(data, p, g, public_key):
+                                            encrypted_data = []
+                                            for d in data:
+                                                k = number.getRandomRange(1, p - 2)  # Rastgele bir k değeri seç
+                                                c1 = pow(g, k, p)
+                                                c2 = (d * pow(public_key, k, p)) % p
+                                                encrypted_data.append((c1, c2))
+                                            return encrypted_data
+
+                                        # ElGamal deşifreleme işlemi
+                                        def decrypt(encrypted_data, private_key, p):
+                                            decrypted_data = []
+                                            for c1, c2 in encrypted_data:
+                                                s = pow(c1, private_key, p)
+                                                decrypted = (c2 * pow(s, -1, p)) % p
+                                                decrypted_data.append(decrypted)
+                                            return decrypted_data
+
+                                        # Anahtar oluşturma
+                                        def generate_keys():
+                                            p = number.getPrime(128)  # Rastgele bir asal sayı seç
+                                            g = number.getRandomRange(2, p - 1)  # Rastgele bir g değeri seç
+                                            private_key = number.getRandomRange(2, p - 1)  # Rastgele bir özel anahtar seç
+                                            public_key = pow(g, private_key, p)  # Açık anahtar hesapla
+                                            return p, g, public_key, private_key
+
+                                        # Anahtarları oluştur
+                                        p, g, public_key, private_key = generate_keys()
+
+                                        # Veriyi şifrele
+                                        encrypted = encrypt(data_set, p, g, public_key)
+                                        print("Şifrelenmiş Veri:")
+                                        print(encrypted)
+
+                                        # Veriyi deşifre et
+                                        decrypted = decrypt(encrypted, private_key, p)
+                                        print("Deşifre Edilmiş Veri:")
+                                        print(decrypted)`;
+
+            var csharpCode3 = `
+                                                import com.n1analytics.paillier.*;
+
+                        public class HomomorphicEncryptionExample {
+                            public static void main(String[] args) {
+                                try {
+                                    // Paillier anahtar çiftlerini oluştur
+                                    PaillierPrivateKey privateKey = PaillierPrivateKey.create(2048);
+                                    PaillierPublicKey publicKey = privateKey.getPublicKey();
+
+                                    // Şifrelenecek sayıları oluştur
+                                    long plaintext1 = 42;
+                                    long plaintext2 = 15;
+
+                                    // Sayıları şifrele
+                                    Ciphertext ciphertext1 = publicKey.encrypt(plaintext1);
+                                    Ciphertext ciphertext2 = publicKey.encrypt(plaintext2);
+
+                                    // Şifreli sayıları topla
+                                    Ciphertext sumCiphertext = ciphertext1.add(ciphertext2);
+
+                                    // Toplamı çöz
+                                    long decryptedSum = privateKey.decrypt(sumCiphertext).longValue();
+
+                                    // Sonuçları ekrana yazdır
+                                    System.out.println("Plaintext 1: " + plaintext1);
+                                    System.out.println("Plaintext 2: " + plaintext2);
+                                    System.out.println("Encrypted 1: " + ciphertext1.toString());
+                                    System.out.println("Encrypted 2: " + ciphertext2.toString());
+                                    System.out.println("Sum (Encrypted): " + sumCiphertext.toString());
+                                    System.out.println("Decrypted Sum: " + decryptedSum);
+
+                                } catch (PaillierException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }`;
+
+
+            var csharpCode4 = `
+                                                from seal import *
+
+                        def main():
+                            # SEALContext ve Encoder'ın oluşturulması
+                            parms = EncryptionParameters(scheme_type.BFV)
+                            parms.set_poly_modulus_degree(4096)
+                            parms.set_coeff_modulus(CoeffModulus.BFVDefault(4096))
+                            parms.set_plain_modulus(PlainModulus(40961))
+
+                            context = SEALContext(parms)
+                            encoder = IntegerEncoder(context)
+
+                            # Anahtar çiftlerinin oluşturulması
+                            keygen = KeyGenerator(context)
+                            public_key = keygen.public_key()
+                            secret_key = keygen.secret_key()
+
+                            # Encryptor ve Decryptor'ların oluşturulması
+                            encryptor = Encryptor(context, public_key)
+                            decryptor = Decryptor(context, secret_key)
+
+                            # Verinin şifrelenmesi
+                            plain_text_1 = 42
+                            plain_text_2 = 15
+
+                            encrypted_data_1 = Ciphertext()
+                            encrypted_data_2 = Ciphertext()
+
+                            encryptor.encrypt(encoder.encode(plain_text_1), encrypted_data_1)
+                            encryptor.encrypt(encoder.encode(plain_text_2), encrypted_data_2)
+
+                            # Şifreli sayıların toplanması
+                            encrypted_sum = Ciphertext()
+                            evaluator = Evaluator(context)
+                            evaluator.add(encrypted_data_1, encrypted_data_2, encrypted_sum)
+
+                            # Şifreli toplamın çözülmesi
+                            decrypted_sum = Plaintext()
+                            decryptor.decrypt(encrypted_sum, decrypted_sum)
+
+                            # Sonuçların ekrana yazdırılması
+                            print("Plaintext 1:", plain_text_1)
+                            print("Plaintext 2:", plain_text_2)
+                            print("Encrypted 1:", encrypted_data_1.to_string())
+                            print("Encrypted 2:", encrypted_data_2.to_string())
+                            print("Encrypted Sum:", encrypted_sum.to_string())
+                            print("Decrypted Sum:", encoder.decode_int64(decrypted_sum))
+
+                        if __name__ == '__main__':
+                            main()
+                        `;
+
+            var csharpCode5 = `
+                                    using System;
+                                    using Microsoft.Research.SEAL;
+
+                                    namespace HomomorphicEncryptionExample {
+                                        class Program {
+                                            static void Main(string[] args) {
+                                                // SEAL kütüphanesini kullanarak homomorfik şifreleme örneği
+
+                                                // Parametrelerin oluşturulması
+                                                EncryptionParameters parms = new EncryptionParameters(SchemeType.BFV);
+                                                parms.PolyModulusDegree = 4096;
+                                                parms.CoeffModulus = CoeffModulus.BFVDefault(polyModulusDegree: 4096);
+                                                parms.PlainModulus = new Modulus(40961);
+
+                                                using(SEALContext context = new SEALContext(parms))
+                                                {
+                                                    // Anahtar çiftlerinin oluşturulması
+                                                    KeyGenerator keygen = new KeyGenerator(context);
+                                                    PublicKey publicKey = keygen.PublicKey;
+                                                    SecretKey secretKey = keygen.SecretKey;
+
+                                                    // Encryptor ve Decryptor'ların oluşturulması
+                                                    Encryptor encryptor = new Encryptor(context, publicKey);
+                                                    Decryptor decryptor = new Decryptor(context, secretKey);
+
+                                                    // Verinin şifrelenmesi
+                                                    Plaintext plainText = new Plaintext("42");
+                                                    Console.WriteLine("Original: " + plainText.ToString());
+
+                                                    Ciphertext encryptedData = new Ciphertext();
+                                                    encryptor.Encrypt(plainText, encryptedData);
+                                                    Console.WriteLine("Encrypted: " + encryptedData.ToString());
+
+                                                    // Verinin şifresinin çözülmesi
+                                                    Plaintext decryptedData = new Plaintext();
+                                                    decryptor.Decrypt(encryptedData, decryptedData);
+                                                    Console.WriteLine("Decrypted: " + decryptedData.ToString());
+                                                }
+                                            }
+                                        }
+                                    }`;
+
+            var editor1 = CodeMirror(document.getElementById("ornek1"), {
+                lineNumbers: true,
+                mode: "text/x-csharp",
+                value: csharpCode1
+            });
+
+            var editor2 = CodeMirror(document.getElementById("ornek2"), {
+                lineNumbers: true,
+                mode: "text/x-java",
+                value: csharpCode2
+            });
+
+            var editor3 = CodeMirror(document.getElementById("ornek3"), {
+                lineNumbers: true,
+                mode: "text/x-java",
+                value: csharpCode3
+            });
+
+            var editor4 = CodeMirror(document.getElementById("ornek4"), {
+                lineNumbers: true,
+                mode: "text/x-java", /*text/x-python*/
+                value: csharpCode4
+            });
+
+            var editor5 = CodeMirror(document.getElementById("ornek5"), {
+                lineNumbers: true,
+                mode: "text/x-java", /*text/x-python*/
+                value: csharpCode5
+            });
+        </script>
+
+    </div>
+    <div id="extra"></div>
+
+</body>
+</html>

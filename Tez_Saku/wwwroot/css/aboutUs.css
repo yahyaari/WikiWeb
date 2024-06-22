@@ -1,0 +1,29 @@
+﻿
+.container {
+    display: inline-block; /* Div'leri yan yana getirmek için */
+    margin: 0 75px; /* Aralarında 100px boşluk bırakmak için */
+}
+
+.circle-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px;
+}
+
+    .circle-img img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+.text {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#welcome {
+    text-align: center; /* İçeriği yatayda ortala */
+    margin-top: 25px;
+}

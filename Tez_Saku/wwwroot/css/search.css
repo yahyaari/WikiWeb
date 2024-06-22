@@ -1,0 +1,25 @@
+﻿.search-container {
+    margin-top: 10px;
+    margin-left: auto;
+}
+
+#searchInput {
+    padding: 6px; /* Boyutu azıcık küçültüyoruz */
+    border: 1px solid #ccc;
+    border-radius: 3px 0 0 3px;
+    font-size: 12px; /* Boyutu azıcık küçültüyoruz */
+}
+
+#searchButton {
+    background-color: #007bff; /* Mavi */
+    border: none;
+    color: white;
+    padding: 6px 12px; /* Boyutu azıcık küçültüyoruz */
+    font-size: 12px; /* Boyutu azıcık küçültüyoruz */
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #searchButton:hover {
+        background-color

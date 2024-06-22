@@ -1,0 +1,359 @@
+﻿@using Microsoft.Research.SEAL
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@functions {
+    private string ShortenEncodedCiphertext(Ciphertext ciphertext, int maxLength = 20)
+    {
+        using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+        {
+            ciphertext.Save(stream);
+            string base64String = Convert.ToBase64String(stream.ToArray());
+            return base64String.Length <= maxLength ? base64String : base64String.Substring(0, maxLength);
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CrypWiki - Uygulamalar</title>
+    <link href="~/css/application.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+    <div id="main">
+        <div id="welcome">
+            <h2>Uygulama Sayfası</h2>
+        </div>
+
+        <div id="myFormContainer">
+            <h2>Uygulama 1</h2>
+            <form action="@Url.Action("Encrypt", "Application")" method="post">
+                <label for="myTextbox">Lütfen şifrelemek istediğiniz tam sayı değeri (0-99) girin:</label>
+                <input type="number" id="myTextbox" name="myTextbox" step="1" required>
+                <button type="submit">Şifrele</button>
+                <br />
+                @if (ViewBag.EncryptedResult != null)
+                {
+                    <label>Şifrelenmiş Sonuç: @ShortenEncodedCiphertext((Ciphertext)ViewBag.EncryptedResult)</label>
+                }
+            </form>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div style="display: flex; justify-content: center; gap: 220px;">
+            <div>
+                
+                <div id="myFormContainer">
+                    <h2>Uygulama 2</h2>
+                    <label>
+                        Toplama Homomorfizmi
+                        <br />
+                        (Fully Homomorphic Encryption - FHE)
+                    </label>
+                    <br />
+                    <div class="input-group">
+                        <label for="m1">Birinci Sayı:</label>
+                        <input type="text" id="m1" name="m1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="m2">İkinci Sayı:</label>
+                        <input type="text" id="m2" name="m2">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="k">k Değeri:</label>
+                        <input type="text" id="k" name="k" value="3">
+                        <strong class="example-value">Örnek Değer:</strong> "3"
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="n">n Değeri:</label>
+                        <input type="text" id="n" name="n" value="33">
+                        <strong class="example-value">Örnek Değer:</strong> "33"
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="k_tersi">k_tersi Değeri:</label>
+                        <input type="text" id="k_tersi" name="k_tersi" value="7">
+                        <strong class="example-value">Örnek Değer:</strong> "7"
+                    </div>
+                    <br>
+                    <button onclick="sifrele()">Şifrele</button>
+                    <button onclick="cozumle()">Deşifrele</button>
+                    <br>
+                    <br>
+                    <div id="sonuc-container">
+                        <p id="sonuc"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                
+                <div id="myFormContainer2">
+                    <h2>Uygulama 3</h2>
+                    <label>
+                        Çarpma Homomorfizmi
+                        <br />
+                        (Fully Homomorphic Encryption - FHE)
+                    </label>
+                    <br />
+                    <div class="input-group">
+                        <label for="m3">Birinci Sayı:</label>
+                        <input type="text" id="m3" name="m3">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="m4">İkinci Sayı:</label>
+                        <input type="text" id="m4" name="m4">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="k_carpma">k Değeri:</label>
+                        <input type="text" id="k_carpma" name="k_carpma" value="3">
+                        <strong class="example-value">Örnek Değer:</strong> "3"
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="n_carpma">n Değeri:</label>
+                        <input type="text" id="n_carpma" name="n_carpma" value="33">
+                        <strong class="example-value">Örnek Değer:</strong> "33"
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label for="k_tersi_carpma">k_tersi Değeri:</label>
+                        <input type="text" id="k_tersi_carpma" name="k_tersi_carpma" value="7">
+                        <strong class="example-value">Örnek Değer:</strong> "7"
+                    </div>
+                    <br>
+                    <button onclick="carp()">Şifrele</button>
+
+                    <!-- Çözümleme işlemi için buton -->
+                    <button onclick="cozumleCarpma()">Deşifrele</button>
+
+                    <div id="sonuc_carpma-container">
+                        <p id="sonuc_carpma"></p>
+                    </div>
+
+
+
+                    <!-- Çözümleme işlemi sonucunu göstermek için bölüm -->
+                    <div id="sonuc_cozumleme-container">
+                        <p id="sonuc_cozumleme"></p>
+                    </div>
+
+                    <script>
+                        // var n = 33; // Modül değeri
+                        // var k = 3; // Şifreleme anahtarı
+                        // var k_tersi = 7; // Çözümleme anahtarı
+
+                        function sifrele() {
+                            temizle(); // Önceki sonuçları temizle
+
+                            var m1 = parseInt(document.getElementById("m1").value);
+                            var m2 = parseInt(document.getElementById("m2").value);
+                            var k = parseInt(document.getElementById("k").value);
+                            var n = parseInt(document.getElementById("n").value);
+                            var k_tersi = parseInt(document.getElementById("k_tersi").value);
+
+                            // Birinci sayının nasıl şifrelendiğini göster
+                            var c1 = Math.pow(m1, k) % n;
+                            var c1_mesaj = "Birinci sayı (" + m1 + ") şifrelenirken kullanılan işlem: c1 = " + m1 + "^" + k + " mod " + n + " = " + c1;
+
+                            // İkinci sayının nasıl şifrelendiğini göster
+                            var c2 = Math.pow(m2, k) % n;
+                            var c2_mesaj = "İkinci sayı (" + m2 + ") şifrelenirken kullanılan işlem: c2 = " + m2 + "^" + k + " mod " + n + " = " + c2;
+
+                            var sonuc_mesaj = c1_mesaj + "<br>" + c2_mesaj;
+
+                            var sonucDiv = document.getElementById("sonuc");
+                            sonucDiv.innerHTML = sonuc_mesaj;
+                        }
+
+                        function cozumle() {
+                            var c1 = parseInt(prompt("c1 değerini girin: "));
+                            var c2 = parseInt(prompt("c2 değerini girin: "));
+                            var k_tersi = parseInt(document.getElementById("k_tersi").value);
+                            var n = parseInt(document.getElementById("n").value);
+
+                            // Şifreli Toplamı göster
+                            var sifreli_toplam = c1 + c2;
+                            var sifreli_toplam_mesaj = "Şifreli toplam: c1 + c2 = " + c1 + " + " + c2 + " = " + sifreli_toplam;
+
+                            // Birinci sayının nasıl çözümlendiğini göster
+                            var m1 = Math.pow(c1, k_tersi) % n;
+                            var m1_mesaj = "Birinci şifreli sayının çözümlenmesi: c1 = " + c1 + "^" + k_tersi + " mod " + n + " = " + m1;
+
+                            // İkinci sayının nasıl çözümlendiğini göster
+                            var m2 = Math.pow(c2, k_tersi) % n;
+                            var m2_mesaj = "İkinci şifreli sayının çözümlenmesi: c2 = " + c2 + "^" + k_tersi + " mod " + n + " = " + m2;
+
+                            // Toplamı göster
+                            var toplam = m1 + m2;
+                            var toplam_mesaj = "Orijinal toplam: c1 + c2 = " + m1 + " + " + m2 + " = " + toplam;
+
+                            var sonuc_mesaj = sifreli_toplam_mesaj + "<br>" + m1_mesaj + "<br>" + m2_mesaj + "<br>" + toplam_mesaj;
+
+                            var sonucDiv = document.getElementById("sonuc");
+                            sonucDiv.innerHTML = sonuc_mesaj;
+                        }
+
+                        // Önceki sonuçları temizle
+                        function temizle() {
+                            var sonucDiv = document.getElementById("sonuc");
+                            sonucDiv.innerHTML = "";
+                        }
+
+                        // Önceki sonuçları temizle
+                        function temizle() {
+                            var sonucDiv = document.getElementById("sonuc");
+                            sonucDiv.innerHTML = "";
+                        }
+
+                        // Çarpma işlemi
+                        function carp() {
+                            // Önceki sonuçları temizle
+                            temizleCarpma();
+                            temizleCozumlemeCarpma()
+
+                            // Kullanıcının girdiği değerleri al
+                            var m3 = parseInt(document.getElementById("m3").value);
+                            var m4 = parseInt(document.getElementById("m4").value);
+                            var k_carpma = parseInt(document.getElementById("k_carpma").value);
+                            var n_carpma = parseInt(document.getElementById("n_carpma").value);
+
+                            // Birinci sayının nasıl şifrelendiğini göster
+                            var c3 = Math.pow(m3, k_carpma) % n_carpma;
+                            var c3_mesaj = "Birinci sayı (" + m3 + ") şifrelenirken kullanılan işlem: m1 = " + m3 + "^" + k_carpma + " mod " + n_carpma + " = " + c3;
+
+                            // İkinci sayının nasıl şifrelendiğini göster
+                            var c4 = Math.pow(m4, k_carpma) % n_carpma;
+                            var c4_mesaj = "İkinci sayı (" + m4 + ") şifrelenirken kullanılan işlem: m2 = " + m4 + "^" + k_carpma + " mod " + n_carpma + " = " + c4;
+
+                            // Sonuçları göster
+                            var sonuc_mesaj_carpma = c3_mesaj + "<br>" + c4_mesaj;
+                            var sonucDiv_carpma = document.getElementById("sonuc_carpma");
+                            sonucDiv_carpma.innerHTML = sonuc_mesaj_carpma;
+                        }
+
+                        // Çözümleme işlemi
+                        function cozumleCarpma() {
+                            // Önceki sonuçları temizle
+                            temizleCozumlemeCarpma();
+
+                            // Kullanıcının girdiği değerleri al
+                            var c3 = parseInt(prompt("Şifreli m1 değerini girin: "));
+                            var c4 = parseInt(prompt("Şifreli m2 değerini girin: "));
+                            var k_tersi_carpma = parseInt(document.getElementById("k_tersi_carpma").value);
+                            var n_carpma = parseInt(document.getElementById("n_carpma").value);
+
+
+                            // Çarpımı göster
+                            var sifreli_carpim = c3 * c4;
+                            var sifreli_carpim_mesaj = "Şifreli çarpım: m1 * m2 = " + c3 + " * " + c4 + " = " + sifreli_carpim;
+
+
+
+                            // Birinci sayının nasıl çözümlendiğini göster
+                            var m3 = Math.pow(c3, k_tersi_carpma) % n_carpma;
+                            var m3_mesaj = "Birinci şifreli sayının çözümlenmesi: m1 = " + c3 + "^" + k_tersi_carpma + " mod " + n_carpma + " = " + m3;
+
+                            // İkinci sayının nasıl çözümlendiğini göster
+                            var m4 = Math.pow(c4, k_tersi_carpma) % n_carpma;
+                            var m4_mesaj = "İkinci şifreli sayının çözümlenmesi: m2 = " + c4 + "^" + k_tersi_carpma + " mod " + n_carpma + " = " + m4;
+
+                            // Çarpımı göster
+                            var carpim = m3 * m4;
+                            var carpim_mesaj = "Orijinal çarpım: m1 * m2 = " + m3 + " * " + m4 + " = " + carpim;
+
+                            // Sonuçları göster
+                            var sonuc_mesaj_cozumleme_carpma = sifreli_carpim_mesaj + "<br>" + m3_mesaj + "<br>" + m4_mesaj + "<br>" + carpim_mesaj;
+                            var sonucDiv_cozumleme_carpma = document.getElementById("sonuc_cozumleme");
+                            sonucDiv_cozumleme_carpma.innerHTML = sonuc_mesaj_cozumleme_carpma;
+                        }
+
+                        // Önceki sonuçları temizle (Çarpma işlemi)
+                        function temizleCarpma() {
+                            var sonucDiv_carpma = document.getElementById("sonuc_carpma");
+                            sonucDiv_carpma.innerHTML = "";
+
+                        }
+
+                        // Önceki sonuçları temizle (Çözümleme işlemi)
+                        function temizleCozumlemeCarpma() {
+                            var sonucDiv_cozumleme_carpma = document.getElementById("sonuc_cozumleme");
+                            sonucDiv_cozumleme_carpma.innerHTML = "";
+                        }
+                    </script>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+        <button onclick="document.getElementById('modalContainer').style.display = 'block'" style="background-color: #4CAF50; /* Yeşil */
+border: none;
+color: white;
+padding: 10px 26px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 13px;
+margin: 4px 2px;
+cursor: pointer;
+border-radius: 8px;">
+            Uygulama 2-3 Açıklama.
+        </button>
+
+        <div id="modalContainer" class="modalContainer">
+            <div class="modalContent">
+                <span class="close" onclick="document.getElementById('modalContainer').style.display = 'none'">&times;</span>
+
+                <h2>K & Ters K Değerleri Nasıl Seçilmeli?</h2>
+                <br />
+                <h3>k ve k_tersi değerlerini nasıl seçeceğinize dair birkaç faktör var:</h3>
+                <p>
+                    Güvenlik: Kullanılan k değeri güçlü bir rastgele sayı olmalıdır. Bu, olası saldırılara karşı dayanıklı bir şifreleme sağlar. Genellikle, büyük asal sayılar veya güçlü rastgele sayılar kullanılır.
+
+                    Matematiksel Özellikler: k ve n arasında bir bağlantı olmalıdır ki, mesajı şifrelerken ve çözümleme yaparken geri dönüşümler kolay olsun. Örneğin, RSA algoritması için, k genellikle bir public/private key çiftinin bir parçası olarak seçilir ve n ile birlikte kullanılır.
+
+                    Homomorfik Şifreleme Kullanımı: Eğer homomorfik şifreleme yapacaksanız, k değeri seçilirken belirli özelliklere dikkat etmek önemlidir. Örneğin, tam homomorfik şifreleme için, kullanılan şifreleme şemasının homomorfik özelliklerini korumak için k değeri üzerinde bazı kısıtlamalar olabilir.
+
+                    Tersine Çevrilebilirlik: Homomorfik şifreleme için, k_tersi (k'nin tersi) değeri, şifreleme işleminin tersini (çözme işlemi) gerçekleştirmek için kullanılır. Bu nedenle, k_tersi değeri k ile ilişkili olmalıdır ve bu değerlerin birbirlerinin tersi olduğundan emin olunmalıdır.
+
+                    Bu faktörleri dikkate alarak, k ve k_tersi değerlerini seçmelisiniz.
+                </p>
+
+                <br />
+                <br />
+                <p>
+                    Şifreleme işlemi sırasında bir mesaj (sayılar) şifrelenirken, şifreleme anahtarı olan k ile birlikte modüler aritmetik kullanılır. Bu işlem, Math.pow(m, k) % n formülüyle gerçekleştirilir, burada m mesajı, k anahtarı ve n modül değeri temsil eder.
+
+Çözümleme işlemi ise şifrelenmiş mesajı orijinal haline getirme işlemidir. Bu işlemde ise şifreleme işleminin tersi olarak k_tersi kullanılır. Yani, Math.pow(c, k_tersi) % n formülü ile çözümleme gerçekleştirilir, burada c şifrelenmiş mesajı, k_tersi çözümleme anahtarını ve n modül değeri temsil eder.
+
+Burada kullanılan k ve k_tersi değerleri seçilirken genellikle şifreleme ve çözümleme işlemlerinin doğru çalışması için birbirlerinin tersi olmaları önemlidir. Bu nedenle, k ve k_tersi değerleri özel olarak seçilir. Örneğin, genellikle bir asal sayı olan ve modül ile aralarında aritmetik olarak asal olan bir değer tercih edilir.
+
+Örneklerde n değeri 33 olarak tanımlandı, bu da örneğin basit ve anlaşılır olması için seçilmiş bir modül değeridir. k ve k_tersi değerleri ise 3 ve 7 olarak belirlendi.
+
+3 ve 7, genellikle küçük asal sayılar olduğu için tercih edildi. Ayrıca, bu sayılar birbirlerinin tersi oldukları için şifreleme ve çözümleme işlemleri doğru çalışacaktır. Ancak, gerçek dünya uygulamalarında, daha büyük ve rastgele seçilmiş asal sayılar genellikle daha güvenli şifreleme sağlar.
+                </p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div id="extra"></div>
+
+</body>
+</html>

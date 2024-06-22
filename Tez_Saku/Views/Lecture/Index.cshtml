@@ -1,0 +1,990 @@
+﻿@using EntityLayer.Concrete
+@model List<Lecture>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>CrypWiki - Konu Anlatımı</title>
+	<link href="~/css/lecture.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+	<div id="main">
+		<div id="welcome">
+			<h2>Konu Anlatımı </h2>
+
+				<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 2)
+					{
+						@item.LectureContent
+					}
+
+				}
+				</p>
+
+				<br />
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 3)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			    
+				
+
+				<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 4)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 5)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+			<ul>
+				<li>
+					<strong>Fully-HE (FHE- Tam Homomorfik Şifreleme):</strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 6)
+						{
+							@item.LectureContent
+						}
+
+					}
+
+				</li>
+				<br />
+				<li>
+					<strong>Somewhat-HE (SHE-Biraz Homomorfik Şifreleme):</strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 7)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+				<br />
+				<li>
+					<strong>Partially-HE (PHE-Kısmen Homomorfik Şifreleme):</strong> 
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 8)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+				<br />
+			</ul>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+				<h2 id="Homomorfik_sifreleme_nedir">
+					HOMOMORFİK ŞİFRELEME
+				</h2>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 9)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			<br />
+			<p>
+
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 10)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+			<h2>
+				Homomorfik Şifreleme ve çeşitleri olan Kısmi-HE,
+				Somewhat-HE (SWHE) ve Tam-HE yöntemleri
+			</h2>
+			<br />
+			<h2>
+				Homomorfik Şifreleme
+			</h2>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 11)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			<ul>
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 12)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+				<li>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 13)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+			</ul>
+				 <br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 14)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				
+				<blockquote>
+					<p>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 15)
+						{
+							@item.LectureContent
+						}
+
+					}
+					</p>
+					<div style="text-align: center;">
+
+						<!-- Resmi ortalamak için -->
+						<img src="/images/Ornek 4.1.png" alt="Örnek" width="324" height="230">
+					</div>
+					<br />
+				</blockquote>
+				<br />
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 16)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 17)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+				<h2>Kısmi-Homomorfik Şifreleme</h2>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 18)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+				<ul>
+					<li>
+						<strong>Çarpma Kısmi Homomorfizması:</strong>
+						@foreach (var item in Model)
+						{
+							if (@item.LectureId == 19)
+							{
+								@item.LectureContent
+							}
+
+						}
+					</li>
+				</ul>
+				</br>
+				<ul>
+					<li>
+						<strong>Toplama Kısmi Homomorfizması:</strong>
+						@foreach (var item in Model)
+						{
+							if (@item.LectureId == 20)
+							{
+								@item.LectureContent
+							}
+
+						}
+					</li>
+				</ul>
+				</br>
+				<p>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 21)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</p>
+
+			</p>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Resim">
+			</div>
+			<h2 id="RSA_Algoritması_ve_HE">RSA Algoritması ve HE</h2>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 22)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<div style="text-align: center;">
+					<!-- Resmi ortalamak için -->
+					<img src="/images/RSA Algoritmasi Formulu.png" alt="RSA Algoritması" width="474" height="47">
+				</div>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 23)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				
+				<div style="text-align: center;">
+					
+						<!-- Resmi ortalamak için -->
+						<img src="/images/Ornek 4.2.png" alt="Örnek" width="582" height="326">
+				</div>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+				<h2>
+					ElGamal Algoritması ve HE
+				</h2>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 24)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+				<br />
+				<div style="text-align: center;">
+					<!-- Resmi ortalamak için -->
+					<img src="/images/ElGamal Algoritmasi.png" alt="ElGamal Algoritması" width="495" height="58">
+				</div>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 25)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+
+				<div style="text-align: center;">
+
+					<!-- Resmi ortalamak için -->
+					<img src="/images/Ornek 4.3.png" alt="Örnek" width="585" height="320">
+				</div>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+				<h2>
+					Paillier Algoritması ve HE
+				</h2>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 26)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+				<br />
+				<div style="text-align: center;">
+					<!-- Resmi ortalamak için -->
+					<img src="/images/Paillier Algoritması.png" alt="Paillier Algoritması" width="580" height="69">
+				</div>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 27)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+
+				<div style="text-align: center;">
+
+					<!-- Resmi ortalamak için -->
+					<img src="/images/Ornek 4.4.png" alt="Örnek" width="582" height="398">
+				</div>
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+				<h2> Tam-Homomorfik Şifreleme</h2>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 28)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<div style="text-align: center;">
+					<!-- Resmi ortalamak için -->
+					<img src="/images/Tam-Homomorfik.png" alt="Tam Homomorfik Şifreleme" width="582" height="339">
+				</div>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 29)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			<br />
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 30)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				
+				<br />
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 31)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<strong>Squashing:</strong>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 32)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<strong>Boostrapping:</strong>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 33)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<div style="text-align: center;">
+					<!-- Resmi ortalamak için -->
+					<img src="/images/Resim 1.png" alt="Açıklama" width="579" height="202">
+				</div>
+				<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 34)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+
+			<h2> Biraz-Homomorfik Şifreleme (Somewhat-HE)</h2>
+
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 35)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+				<h2 id="Somut_homomorfik_sifreleme_uygulamalari">HOMOMORFİK ŞİFRELEME UYGULAMALARI </h2>
+				<br />
+				<h3>Genom ve HE </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 36)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Ulusal Güvenlik ve HE  </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 37)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>
+					Eğitim ve HE
+				</h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 38)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Sağlık ve HE </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 39)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>
+					Bulut Bilişim ve HE
+				</h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 40)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>
+					Mobil Ajan ve HE
+				</h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 41)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Oylama ve HE  </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 42)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Avuç ve Parmak İzi ve HE </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 43)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Finans ve HE </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 44)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Reklam ve HE  </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 45)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>
+					Kablosuz Algılayıcı Ağlarda Güvenli Veri Kümeleme ve HE
+				</h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 46)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+				<br />
+				<h3>Internet of Things (IoT) ve HE </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 47)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Veri Tabanı Güvenliği ve HE </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 48)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>Ağ Kontrol Sistemleri ve HE  </h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 49)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+				<h3>
+					Kapalı Teklif Açık Arttırma ve HE
+				</h3>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 50)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+				<br />
+
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+
+			<br />
+				<h2 id="Guvenlik_ve_Gizlilik">
+				Homomorfik Şifreleme Teknolojisinin Güvenlik ve Gizlilik İlkeleri
+				</h2>
+			<ul>
+				<li>
+					<strong>Veri Gizliliği: </strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 51)
+						{
+							@item.LectureContent
+						}
+
+					}
+
+				</li>
+			</ul>
+				<br />
+			<ul>
+				<li>
+					<strong>Veri Bütünlüğü: </strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 52)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+			</ul>
+			<br />
+			<ul>
+				<li>
+					<strong>Şifreleme Anahtarının Güvenliği: </strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 53)
+						{
+							@item.LectureContent
+						}
+
+					}
+
+
+				</li>
+			</ul>
+			<br />
+			<ul>
+				<li>
+					<strong>Doğrulama ve Kimlik Doğrulama: </strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 54)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+			</ul>
+			<br />
+			<ul>
+				<li>
+					<strong>Saldırı Direnci: </strong>
+					@foreach (var item in Model)
+					{
+						if (@item.LectureId == 55)
+						{
+							@item.LectureContent
+						}
+
+					}
+				</li>
+			</ul>
+			<br />
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 56)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+			<br />
+
+			<div class="containerhr">
+				<img src="/images/img04.png" alt="Ayraç">
+			</div>
+
+			<br />
+
+			<h2 id="Potansiyeller_ve_Zorluklar">
+				Homomorfik Şifreleme ve Veri Analitiği: Potansiyeller ve Zorluklar
+			</h2>
+			<p>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 57)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</p>
+
+		</div>
+		<p>
+			<strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 58)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</strong>
+		
+		</p>
+		</br>
+		
+		<ul>
+			<li>
+				<strong>Veri Gizliliği Koruması: </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 59)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+
+			</li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<strong>Veri Paylaşımında Esneklik: </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 60)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+
+			</li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<strong>Hassas Veri Analizi İmkanı:  </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 61)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+			</li>
+		</ul>
+		<br />
+		<p>
+			<strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 62)
+					{
+						@item.LectureContent
+					}
+
+				}
+			</strong>
+
+		</p>
+		</br>
+		<ul>
+			<li>
+				<strong>Hesaplama Gücü İhtiyacı:  </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 63)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+
+			</li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<strong>Performans:  </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 64)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+
+			</li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<strong>Kriptografik Zorluklar:  </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 65)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+
+			</li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<strong>Veri Boyutu ve Boyut Artışı:  </strong>
+				@foreach (var item in Model)
+				{
+					if (@item.LectureId == 66)
+					{
+						@item.LectureContent
+					}
+
+				}
+
+
+			</li>
+		</ul>
+		<br />
+		<p>
+			@foreach (var item in Model)
+			{
+				if (@item.LectureId == 67)
+				{
+					@item.LectureContent
+				}
+
+			}
+		</p>
+	</div>
+	<div id="extra"></div>
+	
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿.containerhr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px; /* Yükseklik 70px */
+}
+
+    .containerhr img {
+        max-width: 100%; /* Resmin genişliği kadar */
+        height: auto; /* Otomatik yükseklik */
+    }
